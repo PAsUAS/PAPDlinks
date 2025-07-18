@@ -163,8 +163,26 @@
     <footer>
         &copy; 2025 Port Arthur Police Department. All rights reserved.
     </footer>
-    <!-- AI Agent Widget -->   <!-- ✅ AI Agent Widget Embed -->
-    <script src="https://www.jotform.com/agent/0197fd4f5f87778585f7472b565aa0a6047c"></script>
     
+    <!-- Floating Chat Icon Button -->
+<div id="chat-button" onclick="toggleChat()"
+     style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #1a3a6e; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+    <span style="color: white; font-size: 28px;">💬</span>
+</div>
+
+<!-- Hidden iframe with the agent -->
+<iframe id="chat-frame"
+    src="https://www.jotform.com/agent/0197fd4f5f87778585f7472b565aa0a6047c"
+    style="position: fixed; bottom: 90px; right: 20px; width: 350px; height: 500px; border: none; z-index: 9998; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 10px; display: none;">
+</iframe>
+
+<!-- Toggle Script -->
+<script>
+    function toggleChat() {
+        const chatFrame = document.getElementById('chat-frame');
+        chatFrame.style.display = chatFrame.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
 </body>
 </html>
