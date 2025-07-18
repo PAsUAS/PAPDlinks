@@ -164,23 +164,45 @@
         &copy; 2025 Port Arthur Police Department. All rights reserved.
     </footer>
     
-    <!-- Floating Chat Icon Button -->
+<!-- 💬 Floating Chat Icon Button -->
 <div id="chat-button" onclick="toggleChat()"
      style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #1a3a6e; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
     <span style="color: white; font-size: 28px;">💬</span>
 </div>
 
-<!-- Hidden iframe with the agent -->
-<iframe id="chat-frame"
-    src="https://www.jotform.com/agent/0197fd4f5f87778585f7472b565aa0a6047c"
-    style="position: fixed; bottom: 90px; right: 20px; width: 350px; height: 500px; border: none; z-index: 9998; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 10px; display: none;">
-</iframe>
+<!-- 📦 Chat Frame Container -->
+<div id="chat-container"
+     style="position: fixed; bottom: 90px; right: 20px; width: 350px; height: 500px; display: none; z-index: 9998; box-shadow: 0 0 10px rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden;">
 
-<!-- Toggle Script -->
+    <!-- ❌ Close Button -->
+    <div onclick="toggleChat()"
+         style="position: absolute; top: 5px; right: 10px; font-size: 18px; color: #fff; background: #1a3a6e; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; cursor: pointer; z-index: 9999;">
+        ×
+    </div>
+
+    <!-- 🧠 Jotform AI Agent Iframe -->
+    <iframe id="chat-frame"
+        src="https://www.jotform.com/agent/0197fd4f5f87778585f7472b565aa0a6047c"
+        style="width: 100%; height: 100%; border: none;">
+    </iframe>
+</div>
+
+<!-- 🧠 Chat Toggle Script with State Memory -->
 <script>
+    const chatContainer = document.getElementById('chat-container');
+    const chatButton = document.getElementById('chat-button');
+
+    // Load previous state from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('chatOpen') === 'true') {
+            chatContainer.style.display = 'block';
+        }
+    });
+
     function toggleChat() {
-        const chatFrame = document.getElementById('chat-frame');
-        chatFrame.style.display = chatFrame.style.display === 'none' ? 'block' : 'none';
+        const isOpen = chatContainer.style.display === 'block';
+        chatContainer.style.display = isOpen ? 'none' : 'block';
+        localStorage.setItem('chatOpen', !isOpen);
     }
 </script>
 
